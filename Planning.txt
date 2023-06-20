@@ -1,0 +1,21 @@
+1)- Start With Header Section
+  1-1) Markup and styles with responsivness
+
+2)- React Context to create theme customization fonctionality
+  2-1) Create Context and Context Provider Logic
+  2-2) Provide Context in the root component
+3)- Use React Router Dom to set Links.
+  3-1) Set react router provider and set the routes for countries
+  3-2) Create Loader for country page
+4)- Create Country Card Markup, Styles.
+  4-1) Markup and styles with responsivness
+
+///////////////////////////////////////////////////////
+DONE
+///////////////////////////////////////////////////////
+5)- Create Country Developed Details Version Markup and Styles.
+  5-1) Markup and styles with responsivness
+6)- Work On fetching Data and Error handling.
+  6-1) Complete loaders with error handling
+7)- Work on select functionality and fetching on change
+8)- Work on search functionality and fetching on change

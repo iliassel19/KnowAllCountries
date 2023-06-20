@@ -14,6 +14,16 @@ export default {
         200: "hsl(0, 0%, 100%)",
       },
     },
+    animation: {
+      pulse: "pulse 2s cubic-bezier(0.61,0.14,0.3,0.81) infinite",
+    },
+    keyframes: {
+      pulse: {
+        "0%": { opacity: 0.2 },
+        "50%": { opacity: 0.4 },
+        "100%": { opacity: 0.2 },
+      },
+    },
     extend: {},
   },
   plugins: [],
