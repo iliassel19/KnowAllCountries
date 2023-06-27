@@ -1,39 +1,75 @@
-import React, { Suspense } from "react";
+import React, { useState, useContext } from "react";
 import { getAllCountries } from "../api/api";
-import { defer, useLoaderData, Await } from "react-router-dom";
-import CountryCard from "../components/CountryCard";
+import {
+  defer,
+  useLocation,
+  Outlet,
+  Link,
+  useSearchParams,
+} from "react-router-dom";
+import ThemeContext from "../context/ThemeContext";
+import RegionSelector from "../components/RegionSelector";
+import SearchIcon from "../components/Icons/SearchIcon";
 export const loader = async () => {
-  const countries = await getAllCountries();
+  const countries = getAllCountries();
   return defer({ countries });
 };
 
-import CountryCardSkeleton from "../components/CountryCardSkeleton";
-
 const CountriesPage = () => {
-  const { countries } = useLoaderData();
+  let [_, setSearchParams] = useSearchParams();
+
+  const { pathname } = useLocation();
+  const { isDarkTheme } = useContext(ThemeContext);
+  const [query, setQuery] = useState("");
+  const handleSearchSubmition = (e) => {
+    e.preventDefault();
+    if (query == "") {
+      setSearchParams({ query: "all" });
+      return;
+    }
+    setSearchParams({ query: query });
+  };
+
   return (
-    <main className="mx-auto max-w-7xl">
-      <Suspense fallback={<p>Loading Countries ...</p>}>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-12">
-          <Await resolve={countries}>
-            {(data) =>
-              data
-                .slice(0, 8)
-                .map((data) => (
-                  <CountryCard
-                    key={data.name.common}
-                    countryCapital={data.capital}
-                    countryFlag={data.flags.png}
-                    countryPopulation={data.population}
-                    countryRegion={data.region}
-                    countryId={data.name.common.toLowerCase().split(" ")[0]}
-                    countryName={data.name.common}
-                  ></CountryCard>
-                ))
-            }
-          </Await>
+    <main className="px-8 md:px-16 xl:px-0 xl:mx-auto max-w-7xl">
+      {pathname !== "/" && (
+        <div className="mb-12 flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+          <form
+            onSubmit={handleSearchSubmition}
+            className={`${
+              isDarkTheme ? "bg-blue-700" : "bg-grey-200 "
+            } rounded-lg flex items-center gap-4 px-6 relative shadow-lg w-full md:w-[460px] h-[56px]`}
+          >
+            <SearchIcon></SearchIcon>
+            <input
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+              }}
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Search for a country ..."
+              className={`bg-[transparent] md:flex-[1] focus:outline-none font-semibold ${
+                isDarkTheme
+                  ? "text-grey-200 placeholder:text-grey-300 placeholder:opacity-70"
+                  : "placeholder:text-grey-400 text-blue-800"
+              }`}
+            />
+          </form>
+          <RegionSelector></RegionSelector>
         </div>
-      </Suspense>
+      )}
+      {pathname === "/" && (
+        <Link
+          to={"/all"}
+          className="bg-grey-200 px-8 py-4 font-semibold text-blue-900 shadow-lg rounded-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          Show All Countries
+        </Link>
+      )}
+
+      <Outlet />
     </main>
   );
 };

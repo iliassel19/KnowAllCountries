@@ -14,14 +14,14 @@ const CountryCard = ({
     <Link to={`/${countryId}`} className="block">
       <article
         data-country={countryId}
-        className={`w-full h-[330px] transition-colors ${
+        className={`w-full h-[350px] transition-colors ${
           isDarkTheme ? "bg-blue-700" : "bg-grey-200"
-        } shadow-lg rounded-[12px] overflow-hidden`}
+        } shadow-lg rounded-[6px] overflow-hidden`}
       >
         <img
           src={countryFlag}
           alt={`${countryName} flag`}
-          className="w-full h-[160px] bg-cover"
+          className="w-full h-[180px] bg-cover"
         />
         <div className="my-6 px-6">
           <h2

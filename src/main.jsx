@@ -4,10 +4,14 @@ import "./index.css";
 import ThemeProvider from "./context/ThemeProvider.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root.jsx";
-import CountriesPage, {
-  loader as countriesLoader,
-} from "./pages/CountriesPage.jsx";
-import CountryPage from "./pages/CountryPage.jsx";
+import CountriesPage from "./pages/CountriesPage.jsx";
+import CountryPage, { loader as countryLoader } from "./pages/CountryPage.jsx";
+import CountriesByRegion, {
+  loader as countriesByRegionLoader,
+} from "./pages/CountriesByRegion";
+import AllCountries, {
+  loader as allCountriesLoader,
+} from "./pages/AllCountriesPage";
 
 const router = createBrowserRouter([
   {
@@ -15,13 +19,26 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        index: true,
+        path: "/",
         element: <CountriesPage />,
-        loader: countriesLoader,
+        children: [
+          {
+            path: "all",
+            element: <AllCountries />,
+            loader: allCountriesLoader,
+          },
+
+          {
+            path: "region/:region",
+            element: <CountriesByRegion />,
+            loader: countriesByRegionLoader,
+          },
+        ],
       },
       {
-        path: "/:countrieId",
+        path: "/:countryId",
         element: <CountryPage />,
+        loader: countryLoader,
       },
     ],
   },

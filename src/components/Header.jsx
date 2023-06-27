@@ -5,7 +5,7 @@ const Header = () => {
   const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
   return (
     <header
-      className={`h-20 shadow-md transition-colors relative z-50 ${
+      className={`px-6 sm:px-10 md:px-16 h-20 shadow-md transition-colors relative z-50 ${
         isDarkTheme ? "bg-blue-700" : "bg-grey-200"
       }`}
     >

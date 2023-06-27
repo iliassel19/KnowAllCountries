@@ -5,11 +5,11 @@ export const getAllCountries = async () => {
   return await response.json();
 };
 export const getCountry = async (countryId) => {
-  const response = await fetch(`${URL}/name/${countryId}`);
+  const response = await fetch(`${URL}/alpha/${countryId}`);
   return await response.json();
 };
 
-export const getCountryByRegion = async (region) => {
+export const getCountriesByRegion = async (region) => {
   const response = await fetch(`${URL}/region/${region}`);
   return await response.json();
 };

@@ -9,12 +9,11 @@
   3-2) Create Loader for country page
 4)- Create Country Card Markup, Styles.
   4-1) Markup and styles with responsivness
-
+5)- Create Country Developed Details Version Markup and Styles.
+  5-1) Markup and styles with responsivness
 ///////////////////////////////////////////////////////
 DONE
 ///////////////////////////////////////////////////////
-5)- Create Country Developed Details Version Markup and Styles.
-  5-1) Markup and styles with responsivness
 6)- Work On fetching Data and Error handling.
   6-1) Complete loaders with error handling
 7)- Work on select functionality and fetching on change
