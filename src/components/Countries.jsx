@@ -22,7 +22,7 @@ const Countries = ({ countries }) => {
                     key={data.name.common}
                     countryCapital={data.capital}
                     countryFlag={data.flags.png}
-                    countryPopulation={data.population.toLocaleString("en-us")}
+                    countryPopulation={data.population}
                     countryRegion={data.region}
                     countryId={data.cca3}
                     countryName={data.name.common}

@@ -38,7 +38,7 @@ const CountryCard = ({
               }`}
             >
               <span className="font-semibold">Population: </span>
-              <span>{countryPopulation}</span>
+              <span>{countryPopulation.toLocaleString("en-us")}</span>
             </li>
             <li
               className={`text-base transition-colors ${
