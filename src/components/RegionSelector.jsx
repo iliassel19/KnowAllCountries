@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ThemeContext from "../context/ThemeContext";
 import ArrowDownIcon from "./Icons/ArrowDownIcon";
-
+import PaginationContext from "../context/PaginationContext";
 // On reload, the selector was returning to All value for selector. So to save it, I used a switch statement on the Url pathname to prevent the previous problem
 const saveSelectorOnRealod = (path) => {
   switch (path) {
@@ -29,6 +29,7 @@ const RegionSelector = () => {
   const [selector, setSelector] = useState(saveSelectorOnRealod(pathname));
   const [isOpen, setIsOpen] = useState();
   const { isDarkTheme } = useContext(ThemeContext);
+  const { togglePagination } = useContext(PaginationContext);
   return (
     <>
       <div
@@ -66,6 +67,7 @@ const RegionSelector = () => {
               to={"/all"}
               onClick={() => {
                 setIsOpen(false);
+                togglePagination(1);
                 setSelector("All");
               }}
             >
@@ -82,6 +84,7 @@ const RegionSelector = () => {
               onClick={() => {
                 setSelector("Africa");
                 setIsOpen(false);
+                togglePagination(1);
               }}
             >
               Africa
@@ -96,6 +99,7 @@ const RegionSelector = () => {
               to={"/region/america"}
               onClick={() => {
                 setIsOpen(false);
+                togglePagination(1);
                 setSelector("America");
               }}
             >
@@ -111,6 +115,7 @@ const RegionSelector = () => {
               to={"/region/asia"}
               onClick={() => {
                 setIsOpen(false);
+                togglePagination(1);
                 setSelector("Asia");
               }}
             >
@@ -126,6 +131,7 @@ const RegionSelector = () => {
               to={"/region/europe"}
               onClick={() => {
                 setIsOpen(false);
+                togglePagination(1);
                 setSelector("Europe");
               }}
             >
@@ -141,6 +147,7 @@ const RegionSelector = () => {
               to={"/region/oceania"}
               onClick={() => {
                 setIsOpen(false);
+                togglePagination(1);
                 setSelector("Oceania");
               }}
             >
