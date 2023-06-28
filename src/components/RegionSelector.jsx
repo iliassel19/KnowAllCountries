@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import ThemeContext from "../context/ThemeContext";
 import ArrowDownIcon from "./Icons/ArrowDownIcon";
 import PaginationContext from "../context/PaginationContext";
+import RegionSelectorItem from "./RegionSelectorItem";
 // On reload, the selector was returning to All value for selector. So to save it, I used a switch statement on the Url pathname to prevent the previous problem
 const saveSelectorOnRealod = (path) => {
   switch (path) {
@@ -22,6 +23,33 @@ const saveSelectorOnRealod = (path) => {
       return "All";
   }
 };
+
+const regionSelectors = [
+  {
+    id: "All",
+    url: "/all",
+  },
+  {
+    id: "Africa",
+    url: "/region/africa",
+  },
+  {
+    id: "America",
+    url: "/region/america",
+  },
+  {
+    id: "Asia",
+    url: "/region/asia",
+  },
+  {
+    id: "Europe",
+    url: "/region/europe",
+  },
+  {
+    id: "Oceania",
+    url: "/region/oceania",
+  },
+];
 
 const RegionSelector = () => {
   const { pathname } = useLocation();
@@ -57,103 +85,16 @@ const RegionSelector = () => {
               : "top-3/4 opacity-0 pointer-events-none"
           }`}
         >
-          {" "}
-          <li
-            className={`${
-              isDarkTheme ? "text-grey-200" : "text-blue-900"
-            } text-[16px] font-semibold`}
-          >
-            <Link
-              to={"/all"}
-              onClick={() => {
-                setIsOpen(false);
-                togglePagination(1);
-                setSelector("All");
-              }}
-            >
-              All
-            </Link>
-          </li>
-          <li
-            className={`${
-              isDarkTheme ? "text-grey-200" : "text-blue-900"
-            } text-[16px] font-semibold`}
-          >
-            <Link
-              to={"/region/africa"}
-              onClick={() => {
-                setSelector("Africa");
-                setIsOpen(false);
-                togglePagination(1);
-              }}
-            >
-              Africa
-            </Link>
-          </li>
-          <li
-            className={`${
-              isDarkTheme ? "text-grey-200" : "text-blue-900"
-            } text-[16px] font-semibold`}
-          >
-            <Link
-              to={"/region/america"}
-              onClick={() => {
-                setIsOpen(false);
-                togglePagination(1);
-                setSelector("America");
-              }}
-            >
-              America
-            </Link>
-          </li>
-          <li
-            className={`${
-              isDarkTheme ? "text-grey-200" : "text-blue-900"
-            } text-[16px] font-semibold`}
-          >
-            <Link
-              to={"/region/asia"}
-              onClick={() => {
-                setIsOpen(false);
-                togglePagination(1);
-                setSelector("Asia");
-              }}
-            >
-              Asia
-            </Link>
-          </li>
-          <li
-            className={`${
-              isDarkTheme ? "text-grey-200" : "text-blue-900"
-            } text-[16px] font-semibold`}
-          >
-            <Link
-              to={"/region/europe"}
-              onClick={() => {
-                setIsOpen(false);
-                togglePagination(1);
-                setSelector("Europe");
-              }}
-            >
-              Europe
-            </Link>
-          </li>
-          <li
-            className={`${
-              isDarkTheme ? "text-grey-200" : "text-blue-900"
-            } text-[16px] font-semibold`}
-          >
-            <Link
-              to={"/region/oceania"}
-              onClick={() => {
-                setIsOpen(false);
-                togglePagination(1);
-                setSelector("Oceania");
-              }}
-            >
-              Oceania
-            </Link>
-          </li>
+          {regionSelectors.map((region) => (
+            <RegionSelectorItem
+              key={region.id}
+              selectorId={region.id}
+              selectorUrl={region.url}
+              setIsOpen={setIsOpen}
+              togglePagination={togglePagination}
+              setSelector={setSelector}
+            ></RegionSelectorItem>
+          ))}
         </ul>
       </div>
     </>
