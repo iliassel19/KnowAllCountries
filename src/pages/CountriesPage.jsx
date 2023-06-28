@@ -10,6 +10,7 @@ import {
 import ThemeContext from "../context/ThemeContext";
 import RegionSelector from "../components/RegionSelector";
 import SearchIcon from "../components/Icons/SearchIcon";
+import Button from "../components/Button";
 export const loader = async () => {
   const countries = getAllCountries();
   return defer({ countries });
@@ -19,7 +20,7 @@ const CountriesPage = () => {
   let [_, setSearchParams] = useSearchParams();
 
   const { pathname } = useLocation();
-  const { isDarkTheme } = useContext(ThemeContext);
+  const { isDarkTheme, pages } = useContext(ThemeContext);
   const [query, setQuery] = useState("");
   const handleSearchSubmition = (e) => {
     e.preventDefault();

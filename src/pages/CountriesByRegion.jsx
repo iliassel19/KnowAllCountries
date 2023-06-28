@@ -1,14 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { getCountriesByRegion } from "../api/api";
-import { useLoaderData, defer } from "react-router-dom";
+import Loading from "../components/Loading";
+import { useLoaderData, defer, Await } from "react-router-dom";
 import Countries from "../components/Countries";
 const CountriesByRegion = () => {
   const { countries } = useLoaderData();
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,284px))] gap-6 lg:gap-12 mb-12 place-content-center">
-      <Countries countries={countries} />
-    </div>
+    <Suspense fallback={<Loading />}>
+      <Await resolve={countries}>
+        <Countries />
+      </Await>
+    </Suspense>
   );
 };
 

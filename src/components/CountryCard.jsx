@@ -10,6 +10,7 @@ const CountryCard = ({
   countryCapital,
 }) => {
   const { isDarkTheme } = useContext(ThemeContext);
+
   return (
     <Link to={`/${countryId}`} className="block">
       <article

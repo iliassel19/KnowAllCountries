@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { getAllCountries } from "../api/api";
-import { defer, useLoaderData } from "react-router-dom";
+import { defer, useLoaderData, Await } from "react-router-dom";
 import Countries from "../components/Countries";
-
+import ShowMoreIcon from "../components/Icons/ShowMoreIcon";
+import Button from "../components/Button";
+import Loading from "../components/Loading";
 const AllCountries = () => {
   const { countries } = useLoaderData();
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,284px))] gap-6 lg:gap-12 mb-12 place-content-center">
-      <Countries countries={countries} />
-    </div>
+    <Suspense fallback={<Loading />}>
+      <Await resolve={countries}>
+        <Countries />
+      </Await>
+    </Suspense>
   );
 };
 

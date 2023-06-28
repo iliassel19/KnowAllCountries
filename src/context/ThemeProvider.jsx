@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ThemeContext from "./ThemeContext";
 const ThemeProvider = ({ children }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+
   const toggleTheme = () => {
     setIsDarkTheme((prev) => !prev);
   };
