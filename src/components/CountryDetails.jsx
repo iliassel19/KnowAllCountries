@@ -3,7 +3,6 @@ import ThemeContext from "../context/ThemeContext";
 import { useNavigate, Link } from "react-router-dom";
 import ArrowLeftIcon from "./Icons/ArrowLeftIcon";
 import Button from "./Button";
-
 const CountryDetails = ({
   name,
   nativeName,

@@ -63,11 +63,7 @@ const Pagination = ({
                 window.scroll({ top: 0, behavior: "smooth" });
               }}
               className={`transition-transform ${
-                activePage == page && !isDarkTheme
-                  ? "bg-[#000] text-grey-200"
-                  : activePage == page && isDarkTheme
-                  ? "bg-grey-200 text-[#000]"
-                  : ""
+                activePage == page ? "activePage" : ""
               }`}
               style={translateX * 100}
             >

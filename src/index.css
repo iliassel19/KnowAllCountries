@@ -5,3 +5,8 @@
 html {
   font-family: "Nunito Sans", sans-serif;
 }
+
+.activePage {
+  background: #1b1a1a !important;
+  color: #fff !important;
+}

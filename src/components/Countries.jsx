@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import PaginationContext from "../context/PaginationContext";
 import { useAsyncValue, useSearchParams } from "react-router-dom";
 import CountryCard from "./CountryCard";
 import Pagination from "./Pagination";
 const Countries = () => {
+  const { currentPage, togglePagination } = useContext(PaginationContext);
+
   let [searchParams, _] = useSearchParams();
   let query =
     searchParams.get("query") && searchParams.get("query").toLocaleLowerCase();
   const data = useAsyncValue();
-  const [currentPage, setCurrentPage] = useState(1);
   const countriesPerPage = 12;
   const lastPostIndex = currentPage * countriesPerPage;
   const firstPostIndex = lastPostIndex - countriesPerPage;
@@ -49,8 +51,8 @@ const Countries = () => {
       <Pagination
         totalCountries={data.length}
         countriesPerPage={countriesPerPage}
-        setCurrentPage={setCurrentPage}
         activePage={currentPage}
+        setCurrentPage={togglePagination}
       ></Pagination>
     </>
   );

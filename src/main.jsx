@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import ThemeProvider from "./context/ThemeProvider.jsx";
+import PaginationProvider from "./context/PaginationProvider";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root.jsx";
 import CountriesPage from "./pages/CountriesPage.jsx";
@@ -47,7 +48,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider>
-      <RouterProvider router={router} />
+      <PaginationProvider>
+        <RouterProvider router={router} />
+      </PaginationProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
