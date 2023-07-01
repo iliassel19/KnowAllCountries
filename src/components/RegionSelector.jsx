@@ -13,8 +13,8 @@ const saveSelectorOnRealod = (path) => {
       return "Africa";
     case "/region/europe":
       return "Europe";
-    case "/region/america":
-      return "America";
+    case "/region/americas":
+      return "Americas";
     case "/region/asia":
       return "Asia";
     case "/region/oceania":
@@ -34,8 +34,8 @@ const regionSelectors = [
     url: "/region/africa",
   },
   {
-    id: "America",
-    url: "/region/america",
+    id: "Americas",
+    url: "/region/americas",
   },
   {
     id: "Asia",
@@ -93,6 +93,7 @@ const RegionSelector = () => {
               setIsOpen={setIsOpen}
               togglePagination={togglePagination}
               setSelector={setSelector}
+              isDarkTheme={isDarkTheme}
             ></RegionSelectorItem>
           ))}
         </ul>

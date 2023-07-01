@@ -117,8 +117,8 @@ const CountryDetails = ({
           <ul className="mt-10 grid grid-cols-[repeat(auto-fit,minmax(80px,130px))] gap-3 w-full md:mt-16">
             <li
               className={`transition-colors text-base font-semibold flex items-center ${
-                isDarkTheme ? "text-grey-200" : "text-blue-800"
-              }`}
+                !borderCountries ? "col-span-4" : ""
+              } ${isDarkTheme ? "text-grey-200" : "text-blue-800"}`}
             >
               Border Countries:
               {!borderCountries && (
